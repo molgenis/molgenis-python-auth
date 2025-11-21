@@ -1,0 +1,2 @@
+[console_scripts]
+molgenis-auth = molgenis_auth.cli:main

@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "molgenis-auth"
+version = "0.1.0"
+description = "OAuth Device Flow client for Molgenis authentication"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+keywords = []
+authors = [
+  { name = "Tim Cadman", email = "t.j.cadman@umcg.nl" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = [
+  "requests",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0.0",
+  "pytest-cov>=4.0.0",
+  "ruff>=0.4.0",
+]
+
+[project.urls]
+Documentation = "https://github.com/molgenis/molgenis-python-auth#readme"
+Issues = "https://github.com/molgenis/molgenis-python-auth/issues"
+Source = "https://github.com/molgenis/molgenis-python-auth"
+
+[project.scripts]
+molgenis-auth = "molgenis_auth.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["molgenis_auth"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source_pkgs = ["molgenis_auth", "tests"]
+branch = true
+parallel = true
+
+[tool.coverage.paths]
+molgenis_auth = ["molgenis_auth", "*/molgenis-python-auth/molgenis_auth"]
+tests = ["tests", "*/molgenis-python-auth/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
